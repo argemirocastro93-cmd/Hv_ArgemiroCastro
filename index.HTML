@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argemiro J. Castro G. - Ing. de Minas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #e6ecf0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+            line-height: 1.5;
+            color: #1e2b37;
+        }
+
+        .cv-card {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 30px 50px rgba(0, 40, 30, 0.15);
+            overflow: hidden;
+        }
+
+        .cv-header {
+            background: linear-gradient(135deg, #0b3b2f 0%, #1b5e4a 100%);
+            padding: 30px 35px 25px 35px;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            border-bottom: 4px solid #f4b740;
+        }
+
+        .photo-frame {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            background: #ffffff20;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(2px);
+            overflow: hidden;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .header-main {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .header-main h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        .subhead {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            margin: 12px 0 8px 0;
+        }
+
+        .chip {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white;
+        }
+
+        .professional-id {
+            display: inline-block;
+            background: #f4b740;
+            color: #0b3b2f;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            border: 1px solid #ffd966;
+        }
+
+        .contact-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 25px;
+            margin-top: 18px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 60px;
+            padding: 10px 18px;
+            backdrop-filter: blur(2px);
+            font-weight: 400;
+        }
+
+        .contact-badges span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .cv-body {
+            padding: 35px 35px 30px 35px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 35px 0 18px 0;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.3px;
+            color: #0b3b2f;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .section-title:first-of-type { margin-top: 0; }
+        .section-title span {
+            background: #f4b740;
+            width: 28px;
+            height: 28px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b3b2f;
+            font-size: 1.1rem;
+        }
+
+        .profile-text {
+            background: #f1f6f4;
+            padding: 22px 28px;
+            border-radius: 28px;
+            font-size: 1rem;
+            border-left: 5px solid #0b3b2f;
+            box-shadow: inset 0 1px 4px #ffffff;
+            color: #1e3a3a;
+            line-height: 1.7;
+        }
+
+        .experience-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .exp-item {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 20px 25px;
+            box-shadow: 0 5px 14px rgba(0, 30, 20, 0.05);
+            border: 1px solid #dde9e5;
+            transition: transform 0.2s;
+        }
+        .exp-item:hover { transform: translateX(6px); border-left: 4px solid #f4b740; }
+
+        .exp-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+        }
+        .exp-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0b3b2f;
+        }
+        .exp-company {
+            font-weight: 600;
+            color: #5e7a6b;
+            font-size: 1.1rem;
+        }
+        .exp-date {
+            background: #e2eeea;
+            padding: 5px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1d5a47;
+        }
+        .exp-desc ul {
+            list-style: none;
+            padding-left: 8px;
+        }
+        .exp-desc li {
+            margin-bottom: 12px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .exp-desc li::before {
+            content: "⛏️";
+            font-size: 1rem;
+            color: #f4b740;
+            width: 24px;
+            flex-shrink: 0;
+        }
+        .highlight-tag {
+            background: #f4b74020;
+            color: #0b3b2f;
+            font-weight: 600;
+            padding: 0 4px;
+            border-radius: 6px;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 15px 0;
+        }
+
+        .skill-card {
+            background: #f8fbfa;
+            border-radius: 28px;
+            padding: 18px 18px;
+            border: 1px solid #d0e2da;
+        }
+        .skill-category {
+            font-weight: 700;
+            color: #0b3b2f;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-item {
+            background: white;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            border: 1px solid #bcd0c7;
+            font-weight: 500;
+        }
+
+        .edu-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .edu-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: baseline;
+            border-bottom: 1px dotted #cbdad2;
+            padding: 12px 0;
+        }
+        .edu-title {
+            font-weight: 700;
+            min-width: 220px;
+            color: #0b3b2f;
+        }
+        .edu-place {
+            color: #3d5e51;
+            font-weight: 500;
+        }
+        .edu-date {
+            margin-left: auto;
+            background: #f0f5f3;
+            padding: 3px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+
+        .diploma-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .diploma-item {
+            background: #fdf8ed;
+            border: 1px solid #f4b74060;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .references {
+            margin-top: 30px;
+            background: #edf3f0;
+            border-radius: 26px;
+            padding: 20px 25px;
+        }
+        .ref-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px 40px;
+            margin-top: 15px;
+        }
+        .ref-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .ref-name {
+            font-weight: 700;
+            color: #0b3b2f;
+        }
+        .ref-contact {
+            font-size: 0.9rem;
+            color: #2f5b48;
+        }
+
+        footer {
+            margin-top: 35px;
+            text-align: center;
+            font-size: 0.8rem;
+            border-top: 1px solid #cde0d8;
+            padding-top: 18px;
+            color: #587568;
+        }
+
+        @media (max-width: 650px) {
+            .cv-header { flex-direction: column; align-items: flex-start; }
+            .photo-frame { align-self: center; }
+            .exp-header { flex-direction: column; gap: 8px; }
+            .section-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-card">
+        <div class="cv-header">
+            <div class="photo-frame">
+                <img src="foto-perfil.jpg" alt="Argemiro J. Castro Guerra">
+            </div>
+            <div class="header-main">
+                <h1>ARGEMIRO J. CASTRO GUERRA</h1>
+                <div class="subhead">
+                    <span class="chip">Ingeniero de Minas</span>
+                    <span class="chip">Especialista en Proyectos</span>
+                    
+                </div>
+                <div class="professional-id">
+                    ⚒️ Matrícula Prof. 54218-397982 NTS · 2018
+                </div>
+                <div class="contact-badges">
+                    <span>📞 301 232 1366</span>
+                    <span>✉️ argemirocastro93@gmail.com</span>
+                    <span>📍 Colombiano / La Guajira</span>
+                    <span>🚗 Lic. B1 · A2</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cv-body">
+            <div class="section-title"><span>👤</span> PERFIL ESTRATÉGICO</div>
+            <div class="profile-text">
+                Ingeniero de Minas con especialización en Administración de Proyectos (UDES). Más de 7 años de experiencia en minería subterránea, con capacidad demostrada para <strong>reactivar operaciones paralizadas</strong>, incrementar productividad mediante Lean Manufacturing y cumplir metas de producción con altos estándares de seguridad. Competencias en planeamiento minero, gestión de costos, liderazgo de equipos de hasta 70 personas y manejo de software como SAP y AutoCAD. Orientado a resultados, mejora continua y trabajo en entornos exigentes.
+            </div>
+
+            <div class="section-title"><span>💼</span> TRAYECTORIA PROFESIONAL</div>
+            <div class="experience-grid">
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Jefe de Mina</span>
+                        <span class="exp-date">06/2025 – 12/2025</span>
+                    </div>
+                    <div class="exp-company">JNAVARRO S.A.S. – Mina Presidente </div>
+                    <div class="exp-desc">
+                        <ul>
+                            <li><span class="highlight-tag">Hito</span> Reactivación de mina inactiva >2 años.</li>
+                            <li><span class="highlight-tag">Producción</span> Meta sostenida de <strong>2.200 t/mes</strong>.</li>
+                            <li><span class="highlight-tag">Seguridad</span> 2 meses consecutivos sin accidentes.</li>
+                            <li>Liderazgo en supervisión de labores subterráneas y control de costos.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Ingeniero de Producción</span>
+                        <span class="exp-date">10/2024 – 06/2025</span>
+                    </div>
+                    <div class="exp-company">Corporación Minera Simón Bolívar</div>
+                    <div class="exp-desc">
+                        <ul>
+                            <li><span class="highlight-tag">Estrategia</span> Diseño y ejecución de estrategias de explotación minera.</li>
+                            <li><span class="highlight-tag">Gestión</span> Cumplimiento del plan minero con informes de resultados.</li>
+                            <li><span class="highlight-tag">Mejora continua</span> Implementación de planes de innovación.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Jefe de Mina</span>
+                        <span class="exp-date">04/2021 – 10/2024</span>
+                    </div>
+                    <div class="exp-company">MAXIA MINING S.A.S.</div>
+                    <div class="exp-desc">
+                        <ul>
+                            <li><span class="highlight-tag">Meta</span> Producción estable de <strong>2.500 t/mes</strong>.</li>
+                            <li><span class="highlight-tag">Seguridad</span> Récord de 5 meses sin accidentalidad.</li>
+                            <li><span class="highlight-tag">Mejora continua</span> Implementación de reuniones ágiles.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-title">Supervisor de Operaciones / Planeador</span>
+                        <span class="exp-date">01/2018 – 04/2021</span>
+                    </div>
+                    <div class="exp-company">C.I. FRONTIER COAL S.A.S.</div>
+                    <div class="exp-desc">
+                        <ul>
+                            <li>Planeación minera a corto, mediano y largo plazo.</li>
+                            <li>Manejo de topografía, aforos de ventilación y supervisión.</li>
+                            <li>Administración de nómina y programación de mantenimiento.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title"><span>🧰</span> COMPETENCIAS</div>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-category"><span>📐</span> Software & Técnicas</div>
+                    <div class="skill-items">
+                        <span class="skill-item">SAP (Producción)</span>
+                        <span class="skill-item">AutoCAD 2D</span>
+                        <span class="skill-item">Excel Avanzado</span>
+                        <span class="skill-item">Planeamiento minero</span>
+                        <span class="skill-item">Ventilación</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-category"><span>⚙️</span> Gestión & Métodos</div>
+                    <div class="skill-items">
+                        <span class="skill-item">Lean Manufacturing</span>
+                        <span class="skill-item">Metodologías ágiles</span>
+                        <span class="skill-item">Control de costos</span>
+                        <span class="skill-item">Seguridad minera</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title"><span>🎓</span> EDUCACIÓN</div>
+            <div class="edu-wrapper">
+                <div class="edu-line">
+                    <span class="edu-title">Especialista en Administración de Proyectos</span>
+                    <span class="edu-place">Universidad de Santander (UDES)</span>
+                    <span class="edu-date">2024</span>
+                </div>
+                <div class="edu-line">
+                    <span class="edu-title">Ingeniero de Minas</span>
+                    <span class="edu-place">Universidad Francisco de Paula Santander</span>
+                    <span class="edu-date">2018</span>
+                </div>
+            </div>
+
+            <footer>
+                ⚡ Argemiro Junior Castro Guerra · 2026 · Perfil Profesional Verificado
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
